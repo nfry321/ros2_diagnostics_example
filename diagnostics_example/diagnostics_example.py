@@ -45,11 +45,12 @@ class DiagnosticsExample(Node):
         # the /diagnostics topic must be published as msg type diagnosticArray
         # this is an array of all of the DiagnosticStatus msgs in the node
         self.diaArray = DiagnosticArray()
-        self.diaArray.header.stamp.sec = 999
+        # self.diaArray.header.stamp.sec = 999
         self.diaArray.status.append(self.status1)
         self.diaArray.status.append(self.status2)
 
         # Publish initial status
+        self.diaArray.header.stamp = self.get_clock().now().to_msg()
         self.diagnostic_pub.publish(self.diaArray)
 
         self.timer = self.create_timer(5, self.timer_callback)
@@ -61,6 +62,7 @@ class DiagnosticsExample(Node):
         self.checkTemp(temp,1)
         temp = random.randrange(0, 100)
         self.checkTemp(temp,2)
+        self.diaArray.header.stamp = self.get_clock().now().to_msg()
         self.diagnostic_pub.publish(self.diaArray)
 
     def checkTemp(self, temp, sensor):

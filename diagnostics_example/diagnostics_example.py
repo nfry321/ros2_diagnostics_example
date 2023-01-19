@@ -58,6 +58,7 @@ class DiagnosticsExample(Node):
         # or just publish where you would report a status change.
         temp = random.randrange(0, 100)
         self.checkTemp(temp,1)
+        temp = random.randrange(0, 100)
         self.checkTemp(temp,2)
         self.diagnostic_pub.publish(self.diaArray)
 

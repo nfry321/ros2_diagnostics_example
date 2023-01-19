@@ -45,6 +45,7 @@ class DiagnosticsExample(Node):
         # the /diagnostics topic must be published as msg type diagnosticArray
         # this is an array of all of the DiagnosticStatus msgs in the node
         self.diaArray = DiagnosticArray()
+        self.diaArray.header.stamp.sec = 999
         self.diaArray.status.append(self.status1)
         self.diaArray.status.append(self.status2)
 
